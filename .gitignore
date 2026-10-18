@@ -4,3 +4,10 @@ __pycache__/
 *.py[cod]
 data/
 .env
+
+# Terraform local state and generated plans; commit .terraform.lock.hcl.
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.plan

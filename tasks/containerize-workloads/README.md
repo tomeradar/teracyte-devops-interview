@@ -4,7 +4,7 @@
 
 ## Goal
 
-Give both teams a repeatable way to run the application and analysis without installing Python dependencies on the host.
+Give Dev a repeatable runtime for its application and production analysis. Data/ML's training-to-model handoff is covered by the linked team-support task.
 
 ## Requirements
 

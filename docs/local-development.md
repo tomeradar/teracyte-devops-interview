@@ -15,6 +15,7 @@ The starter contains working Python steps and a sequential runner. Compose curre
 | scripts/generate_mock_data.py | Five deterministic images and mock weights |
 | scripts/run_local.py | Sequential pipeline execution |
 | tests/ | Small starter tests |
+| examples/model_lifecycle/ | Data/ML notebook and equivalent CPU training/evaluation CLI |
 
 ## Run the baseline
 
@@ -78,7 +79,19 @@ The worker writes data/objects/reports/demo-local.json. The API also accepts POS
 - Aggregation reads one inference result per registered image. PostgreSQL table image_metrics has primary key (experiment_id, image_id).
 - MongoDB database experiments, collection experiments, uses the experiment ID as _id. Completion sets status=COMPLETED and result_count=5.
 
-Preserve these meanings when changing how services run. The generator stores model_path in data/manifest.json, and inference accepts --model-path. The team-delivery task asks you to expose model selection through configuration; no registry is required.
+Preserve these meanings when changing how services run. The generator stores model_path in data/manifest.json, and inference accepts --model-path. Dev owns these production steps. The team-support task asks you to publish a Data/ML artifact and expose its selection through configuration; no registry is required.
+
+## Data/ML training example
+
+The [supplied notebook and equivalent CLI](../examples/model_lifecycle/README.md) train a tiny regression model on synthetic data using NumPy. Run from the repository root:
+
+~~~bash
+python -m examples.model_lifecycle.train --output-dir data/model-lifecycle
+~~~
+
+This produces model.json and evaluation.json. The helpers supply training, benchmarking against a baseline, loading and prediction. Publication, release metadata, selection and rejection remain candidate work. Jupyter is optional; the CLI uses the same helpers as the notebook.
+
+The image-inference mock can read this artifact and report its SHA-256, but its mask metrics do not evaluate the regression weights. Use the supplied model evaluation separately; do not claim production accuracy from the pipeline's completion status.
 
 ## Known limitations
 

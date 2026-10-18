@@ -4,12 +4,12 @@
 
 ## Goal
 
-Run the existing analysis steps as a visible, repeatable Kubernetes workflow.
+Run Dev's existing production analysis steps as a visible, repeatable Kubernetes workflow. Data/ML training infrastructure is a separate optional task.
 
 ## Requirements
 
 If you choose this task:
-- Add reproducible local Kubernetes and Argo setup. Kind/k3d is sufficient; Terraform or cloud deployment is optional. Compose may host supporting services, but Argo itself requires Kubernetes.
+- Add reproducible local Kubernetes and Argo setup. Kind/k3d is sufficient. Provisioning Kubernetes with Terraform or deploying it to the cloud is optional; the required Terraform task covers storage only. Compose may host supporting services, but Argo itself requires Kubernetes.
 - Integrate the existing preprocess, inference and database-update commands with container inputs, outputs and database configuration.
 - Add workflow-template.yaml accepting an experiment ID and image IDs. Preserve the image → mask → inference dependency and complete database aggregation only after the expected results exist.
 - Add basic workflow monitoring: make terminal status, duration and failed-step logs accessible through a documented command or UI. Include resource requests/limits and bounded retries.

@@ -12,7 +12,7 @@ If you choose this task, provide either a detailed blueprint or working configur
 - Unique service/workflow versions and a way to route requests or analysis to one developer's change.
 - Isolation of database records, object keys and secrets where infrastructure is shared.
 - Resource quotas and expiry/cleanup so idle environments do not accumulate costs.
-- A workflow for changing only an API service or one analysis step without overwriting another developer's work.
+- A workflow for Dev to change an API service or analysis step, and Data/ML to test a training run or candidate model, without overwriting another person's work.
 
 ## Suggested starting point
 
