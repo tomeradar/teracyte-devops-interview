@@ -1,4 +1,4 @@
-"""Sequential baseline runner; candidates replace this with an Argo DAG."""
+"""Sequential baseline runner; Argo orchestration is an optional extension."""
 
 import argparse
 import json

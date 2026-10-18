@@ -31,7 +31,7 @@ def register_experiment(request: ExperimentRequest):
     image_ids = request.image_ids
     if len(image_ids) != len(set(image_ids)) or any(not ID_PATTERN.fullmatch(value) for value in image_ids):
         raise HTTPException(status_code=422, detail="image_ids must be unique safe identifiers")
-    # This path is intentionally hardcoded. Its replacement is Task 1.2/3.2.
+    # Fixed local storage is sufficient for core tasks; object storage is optional.
     missing = [image_id for image_id in image_ids if not (Path("data/objects/raw") / f"{image_id}.png").is_file()]
     if missing:
         raise HTTPException(status_code=404, detail=f"images unavailable: {missing}")

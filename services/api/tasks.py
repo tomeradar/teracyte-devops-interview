@@ -35,7 +35,7 @@ def read_results(experiment_id: str) -> list[dict]:
 def write_report(experiment_id: str) -> str:
     if not re.fullmatch(r"[A-Za-z0-9_-]+", experiment_id):
         raise ValueError("invalid experiment_id")
-    # Deliberately local and fixed: candidates replace this storage coupling.
+    # Fixed local storage is sufficient for core tasks; object storage is optional.
     report_path = Path("data/objects/reports") / f"{experiment_id}.json"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps({"experiment_id": experiment_id, "results": read_results(experiment_id)}, indent=2) + "\n")
